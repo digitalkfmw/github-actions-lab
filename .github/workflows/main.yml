@@ -1,0 +1,28 @@
+#main.yml file
+
+name: DigiTalk Demo Workflow
+
+on:
+  push:
+    branches:
+      - main  # Trigger workflow when pushing to 'main' branch
+  pull_request:
+    branches:
+      - main  # Trigger workflow on pull requests targeting 'main' branch
+
+jobs:
+  build:
+    runs-on: windows-latest  # Running on Windows environment
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Action to checkout the repository code
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2  # Action to set up Node.js
+
+      - name: Install dependencies
+        run: npm install  # Install project dependencies
+
+      - name: Run tests
+        run: npm test  # Run the tests
